@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Clickable Image</title>
+<style>
+    body {
+        background-image: url('background_image.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+
+    #openingSentence {
+        font-size: 32px; /* Increased font size */
+        color: #f106dd; /* Changed text color to orange */
+        font-weight: bold; /* Added font weight */
+        padding: 10px 20px; /* Added padding for lively frame */
+        border: 2px dashed #e90505; /* Added dashed border */
+        border-radius: 10px; /* Added border radius */
+        margin-bottom: 20px; /* Added margin below the sentence */
+    }
+
+    #messageContainer {
+        display: none;
+        width: 100%;
+        height: 50px;
+        background-color: #ff007b;
+        color: #ffffff;
+        font-size: 24px; /* Increased font size */
+        font-family: 'Arial', sans-serif; /* Changed font family */
+        text-align: center;
+        line-height: 50px;
+        animation: slideIn 1s ease-in-out forwards; /* Animation for message appearance */
+    }
+
+    @keyframes slideIn {
+        from {
+            transform: translateX(-100%);
+        }
+        to {
+            transform: translateX(0);
+        }
+    }
+
+    #clickableImage, #finalImage {
+        width: 100%; /* Half the size of the viewport width */
+        max-width: 200px; /* Limit size to 200px */
+        height: auto;
+        cursor: pointer;
+    }
+
+    #finalImage {
+        display: none;
+    }
+</style>
+</head>
+<body>
+
+<div id="openingSentence">Please click Flobamoratads English image to find a monthly updated philosophy quotes</div>
+
+<div id="messageContainer">Please click Flobamoratads English image to find a monthly updated philosophy quotes</div>
+
+<img id="clickableImage" src="Logo 2.png" alt="Clickable Image">
+<img id="finalImage" src="Quoate-Photoroom.jpg" alt="Final Image">
+
+<script>
+    const messages = [
+        'To discover the words of wisdom, ia membutuhkan keingintahuan yang besar',
+        'One more way to go',
+        'Here you go',
+        'Last click'
+    ];
+
+    let messageIndex = 0;
+    const messageContainer = document.getElementById('messageContainer');
+    const clickableImage = document.getElementById('clickableImage');
+    const finalImage = document.getElementById('finalImage');
+
+    function showMessage() {
+        if (messages[messageIndex] === 'Last click') {
+            finalImage.style.display = 'block'; // Show the final image
+            clickableImage.style.display = 'none'; // Hide the clickable image
+        } else {
+            messageContainer.textContent = messages[messageIndex];
+            messageContainer.style.display = 'block';
+        }
+        messageIndex++;
+        if (messageIndex >= messages.length) {
+            messageIndex = 0; // Reset message index if it exceeds the array length
+        }
+    }
+
+    clickableImage.addEventListener('click', showMessage);
+</script>
+
+</body>
+</html>
